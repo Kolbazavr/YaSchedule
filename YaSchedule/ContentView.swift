@@ -12,7 +12,6 @@ import SwiftUI
 struct ContentView: View {
     private let apiKey: String = ""
     
-    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -22,6 +21,10 @@ struct ContentView: View {
         }
         .padding()
         .onAppear {
+//            testSearch()
+//            testCityStations()
+//            testMockClient()
+            
 //            testFetchStations()
 //            testCarrierInfo()
 //            testCopyright()
@@ -33,18 +36,47 @@ struct ContentView: View {
         }
     }
     
+    func testSearch() {
+        Task {
+//            let cityStationService = CityStationsService()
+//            try? await cityStationService.testGetSegments()
+        }
+    }
+    
+    func testCityStations() {
+        Task {
+//            let cityStationService = CityStationsService()
+//            let settlements = try? await cityStationService.getSettlements()
+//            let cityNames = settlements?.compactMap { $0.cityName }
+//            print(cityNames ?? [])
+            
+//            let transportTypes = settlements?.compactMap { $0.stations.compactMap(\.stationType.rawValue) }
+//            print(transportTypes)
+        }
+        
+    }
+    
+//    func testMockClient() {
+//        Task {
+//            do {
+//                let client = MockClient()
+//                let service = StationsListService(client: client)
+//                let stations = try await service.getAllStations()
+//                print(stations)
+//            }
+//        }
+//    }
+    
     func testFetchStations() {
         Task {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
-                    transport: URLSessionTransport()
+                    transport: URLSessionTransport(),
+                    middlewares: [APIKeyMiddleware()]
                 )
                 
-                let service = NearestStationsService(
-                    client: client,
-                    apikey: apiKey
-                )
+                let service = NearestStationsService(client: client)
 
                 print("Fetching stations...")
                 let stations = try await service.getNearestStations(
@@ -63,9 +95,10 @@ struct ContentView: View {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
-                    transport: URLSessionTransport()
+                    transport: URLSessionTransport(),
+                    middlewares: [APIKeyMiddleware()]
                 )
-                let service = CarrierService(client: client, apikey: apiKey)
+                let service = CarrierService(client: client)
                 
                 print("Fetching carrier info...")
                 
@@ -82,9 +115,10 @@ struct ContentView: View {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
-                    transport: URLSessionTransport()
+                    transport: URLSessionTransport(),
+                    middlewares: [APIKeyMiddleware()]
                 )
-                let service = CopyrightService(client: client, apikey: apiKey)
+                let service = CopyrightService(client: client)
                 
                 print("Fetching copyright...")
                 
@@ -101,9 +135,10 @@ struct ContentView: View {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
-                    transport: URLSessionTransport()
+                    transport: URLSessionTransport(),
+                    middlewares: [APIKeyMiddleware()]
                 )
-                let service = NearestCityService(client: client, apikey: apiKey)
+                let service = NearestCityService(client: client)
                 
                 print("Fetching nearest city...")
                 
@@ -120,9 +155,10 @@ struct ContentView: View {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
-                    transport: URLSessionTransport()
+                    transport: URLSessionTransport(),
+                    middlewares: [APIKeyMiddleware()]
                 )
-                let service = RoutsSearchService(client: client, apikey: apiKey)
+                let service = RoutsSearchService(client: client)
                 
                 print("Fetching routs...")
                 
@@ -139,9 +175,10 @@ struct ContentView: View {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
-                    transport: URLSessionTransport()
+                    transport: URLSessionTransport(),
+                    middlewares: [APIKeyMiddleware()]
                 )
-                let service = StationScheduleService(client: client, apikey: apiKey)
+                let service = StationScheduleService(client: client)
                 
                 print("Fetching station schedule...")
                 
@@ -158,9 +195,10 @@ struct ContentView: View {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
-                    transport: URLSessionTransport()
+                    transport: URLSessionTransport(),
+                    middlewares: [APIKeyMiddleware()]
                 )
-                let service = StationsListService(client: client, apikey: apiKey)
+                let service = StationsListService(client: client)
                 
                 print("Fetching all stations...")
                 
@@ -177,13 +215,14 @@ struct ContentView: View {
             do {
                 let client = Client(
                     serverURL: try Servers.Server1.url(),
-                    transport: URLSessionTransport()
+                    transport: URLSessionTransport(),
+                    middlewares: [APIKeyMiddleware()]
                 )
-                let service = StationsThreadService(client: client, apikey: apiKey)
+                let service = StationsThreadService(client: client)
                 
                 print("Fetching stations thread...")
                 
-                let stationsThread = try await service.getStationsThread(threadUid: "098S_2_2")
+                let stationsThread = try await service.getStationsThread(threadUid: "022A_9_2")
                 
                 print("Successfully fetched stations thread: \(stationsThread)")
             } catch {
