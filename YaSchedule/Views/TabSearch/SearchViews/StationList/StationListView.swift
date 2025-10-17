@@ -13,25 +13,19 @@ struct StationListView: View {
     @EnvironmentObject private var viewModel: AppViewModel
     
     let waypointIndex: Int
-    private let textLimit: Int = 20
+    let locationIndex: Int
     
-//    var searchResults: [String] {
-//        searchText.isEmpty ? cities : cities.filter { $0.lowercased().contains(searchText.lowercased()) }
-//    }
+    private let textLimit: Int = 20
     
     var body: some View {
         VStack {
             SearchBarView(searchText: $viewModel.searchText, textLimit: 20)
                 .padding(.horizontal, 16)
-            
-            ListView(items: viewModel.filteredWaypoints(for: waypointIndex), wayPointIndex: waypointIndex)
-            
-
-//            if let selectedCity = viewModel.route[waypointIndex].city {
-//                ListView(items: selectedCity.stations, wayPointIndex: waypointIndex)
-//            } else {
-//                ListView(items: viewModel.allSettlements, wayPointIndex: waypointIndex)
-//            }
+            ListView(
+                items: viewModel.waypointsToSelect(for: waypointIndex, locationIndex: locationIndex),
+                wayPointIndex: waypointIndex,
+                locationIndex: locationIndex
+            )
         }
         .navigationTitle(Text("City Search"))
         .navigationBarTitleDisplayMode(.inline)
@@ -43,6 +37,6 @@ struct StationListView: View {
     let client = MockClient()
     let cityStationsProvider = CityStationsProvider(client: client)
     let routesProvider = RoutesProvider(client: client)
-    StationListView(waypointIndex: 0)
+    StationListView(waypointIndex: 0, locationIndex: 0)
         .environmentObject(AppViewModel(cityStationsProvider: cityStationsProvider, routesProvider: routesProvider))
 }

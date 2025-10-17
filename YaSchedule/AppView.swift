@@ -25,9 +25,11 @@ struct AppView: View {
             .tint(.black)
             .navigationDestination(for: NavigationViewModel.NavDestination.self) { viewToShow in
                 switch viewToShow {
-                case .citySearch(let waypointIndex):
-                    StationListView(waypointIndex: waypointIndex)
-                        .withCustomBackButton(waypointIndex: waypointIndex)
+                      
+                case .locationList(routePointIndex: let routePointIndex, routeLocationIndex: let locationIndex):
+                    StationListView(waypointIndex: routePointIndex, locationIndex: locationIndex)
+                        .withCustomBackButton(waypointIndex: routePointIndex)
+
                 case .carrierList:
                     Text("CarrierListView")
                 case .searchFilters:

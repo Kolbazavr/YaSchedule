@@ -23,10 +23,6 @@ final class CityStationsProvider {
         else {
             throw CityStationsProviderError.allStationsParseError
         }
-//        let russiaSettlements = russiaRegions
-//            .compactMap { $0.settlements }
-//            .flatMap { $0 }
-//            .filter { !($0.title ?? "").isEmpty }
         let russiaSettlements = russiaRegions.compactMap { $0.settlements } .flatMap { $0 }
         let settlementsWithTrains: [Settlement] = russiaSettlements.compactMap { settlement in
             guard let settlementTitle = settlement.title,

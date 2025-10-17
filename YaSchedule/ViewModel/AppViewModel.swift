@@ -8,6 +8,7 @@
 import Foundation
 
 protocol Waypoint: CustomStringConvertible, Hashable {
+    var title: String? { get }
     var yandexCode: String { get }
 }
 
@@ -46,47 +47,34 @@ final class AppViewModel: ObservableObject {
     }
     
     func isReadyToSearch() -> Bool {
-        route[0].city != nil && route[1].city != nil
+        route[0].routeLocations.count > 0 && route[1].routeLocations.count > 0
     }
     
-    func filteredWaypoints(for waypointIndex: Int) -> [any Waypoint] {
-        let waypoint = route[waypointIndex]
-        if let selectedCity = waypoint.city {
-            return selectedCity.stations?.filter { station in
-                searchText.isEmpty || station.title?.lowercased().contains(searchText.lowercased()) ?? false
-            } ?? []
-        } else {
-            return allSettlements.filter { settlement in
-                searchText.isEmpty || settlement.title?.lowercased().contains(searchText.lowercased()) ?? false
-            }
+    func waypointsToSelect(for waypointIndex: Int, locationIndex: Int?) -> [any Waypoint] {
+        guard let locationIndex, locationIndex > 0 else {
+            return allSettlements.filterBy(title: searchText)
         }
+        let selectedSettlement = route[waypointIndex].routeLocations.first as? Components.Schemas.Settlement
+        return selectedSettlement?.stations?.filterBy(title: searchText) ?? []
     }
     
     func addItem(_ item: any Waypoint, to routePointWithIndex: Int) -> Bool {
         var updatedPoint = route[routePointWithIndex]
-        var isFinishedAdding: Bool = false
         
         switch item {
         case let city as Components.Schemas.Settlement:
-            updatedPoint.city = city
+            updatedPoint.routeLocations = [city]
         case let station as Components.Schemas.Station:
-            updatedPoint.station = station
-            isFinishedAdding = true
+            updatedPoint.routeLocations = [updatedPoint.routeLocations[0], station]
         default:
             print(#function, "Unsupported item: \(item)")
             break
         }
         
+        assert(updatedPoint.routeLocations.count <= 2, "Should not have more than 2 waypoints, current waypoints: \(updatedPoint.routeLocations)")
         route[routePointWithIndex] = updatedPoint
         
-        return isFinishedAdding
-    }
-    
-    func backButtonTapped(with waypointIndex: Int) -> Bool {
-        let shouldGoToMainScreen: Bool = true
-        guard route[waypointIndex].station != nil else { return shouldGoToMainScreen }
-        route[waypointIndex] = .init()
-        return !shouldGoToMainScreen
+        return route[routePointWithIndex].routeLocations.count == 2
     }
     
     func searchRoutes() {

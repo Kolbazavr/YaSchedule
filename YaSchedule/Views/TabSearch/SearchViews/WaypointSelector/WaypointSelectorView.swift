@@ -23,7 +23,7 @@ struct WaypointSelectorView: View {
                     VStack {
                         ForEach(Array(viewModel.route.enumerated()), id: \.0) { waypointIndex, routePoint in
                             Button {
-                                navigationVM.navigate(to: .citySearch(waypointIndex))
+                                navigationVM.navigateToSelectedLocation(for: routePoint, with: waypointIndex)
                             } label: {
                                 Text(routePoint.description ?? WaypointType.allCases[waypointIndex].rawValue)
                                     .lineLimit(1)

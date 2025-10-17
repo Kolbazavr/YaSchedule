@@ -13,13 +13,19 @@ struct ItemView: View {
     
     let item: any Waypoint
     let waypointIndex: Int
+    let locationIndex: Int
     
     var body: some View {
         Button {
             let isFinished = viewModel.addItem(item, to: waypointIndex)
-            isFinished ? navigationVM.navigateToMain() : navigationVM.navigate(to: .citySearch(waypointIndex))
+            isFinished ? navigationVM.navigateToMain() : navigationVM.navigate(to: .locationList(routePointIndex: waypointIndex, routeLocationIndex: 1))
         } label: {
             HStack {
+                if isSelected() {
+                    Image(systemName: "circle.fill")
+                        .font(.system(size: 8, weight: .regular))
+                        .foregroundStyle(.purple)
+                }
                 Text(item.description)
                     .font(.system(size: 17, weight: .regular))
                 Spacer()
@@ -29,9 +35,15 @@ struct ItemView: View {
         }
         .tint(.ypBlack)
     }
+    
+    func isSelected() -> Bool {
+        let routePointLocations = viewModel.route[waypointIndex].routeLocations
+        let isSomethingSelected = routePointLocations.count > locationIndex
+        return isSomethingSelected ? item.title == routePointLocations[locationIndex].title : false
+    }
 }
 
 #Preview {
     let item: Components.Schemas.Settlement = .init(title: "Some City or TrainStation", codes: .init(yandex_code: UUID().uuidString), stations: [])
-    ItemView(item: item, waypointIndex: 0)
+    ItemView(item: item, waypointIndex: 0, locationIndex: 0)
 }
