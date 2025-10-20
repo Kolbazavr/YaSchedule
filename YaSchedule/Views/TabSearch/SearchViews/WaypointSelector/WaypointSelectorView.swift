@@ -27,7 +27,7 @@ struct WaypointSelectorView: View {
                             } label: {
                                 Text(routePoint.description ?? WaypointType.allCases[waypointIndex].rawValue)
                                     .lineLimit(1)
-                                    .foregroundStyle(routePoint.description == nil ? .ypGrayUni : .ypBlack)
+                                    .foregroundStyle(routePoint.description == nil ? .ypGrayUni : .ypBlackUni)
                                     .opacity(phase == 1 ? 0 : 1)
                                     .padding(.horizontal, 16)
                                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -42,7 +42,9 @@ struct WaypointSelectorView: View {
                 }
                 
                 Button {
-                    isPoopingOut.toggle()
+                    if viewModel.isReadyToSearch() {
+                        isPoopingOut.toggle()
+                    }
                     isSwapping.toggle()
                     viewModel.swapOriginAndDestination()
                 } label: {
@@ -68,12 +70,14 @@ struct WaypointSelectorView: View {
             }
             if viewModel.isReadyToSearch() {
                 Button {
-                    isPoopingOut.toggle()
+                    viewModel.searchRoutes()
+                    navigationVM.navigate(to: .carrierList)
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 16, style: .continuous)
                             .fill(.ypBlue)
                         Text("Search")
+                            .font(.system(size: 17, weight: .bold))
                             .foregroundColor(.white)
                     }
                     .frame(width: 150, height: 60)

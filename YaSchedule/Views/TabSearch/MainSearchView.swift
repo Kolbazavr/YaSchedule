@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct MainSearchView: View {
+    @EnvironmentObject private var viewModel: AppViewModel
     
     var body: some View {
-        VStack(spacing: 44) {
-            StoriesListView()
-            WaypointSelectorView()
-            Spacer()
+        if let error = viewModel.loadingError {
+            ErrorView(error: error)
+        } else {
+            VStack(spacing: 44) {
+                StoriesListView()
+                WaypointSelectorView()
+                Spacer()
+            }
         }
     }
 }
 
 #Preview {
+    let client = MockClient()
+    let cityStationsProvider = CityStationsProvider(client: client)
+    let routesProvider = RoutesProvider(client: client)
     MainSearchView()
+        .environmentObject(AppViewModel(cityStationsProvider: cityStationsProvider, routesProvider: routesProvider))
 }

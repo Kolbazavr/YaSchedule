@@ -9,11 +9,13 @@ import Foundation
 
 enum CityStationsProviderError: Error {
     case allStationsParseError
+    case sortingError
 }
 
 final class CityStationsProvider {
     typealias Settlement = Components.Schemas.Settlement
-    let allStationsService: StationsListService
+    private let allStationsService: StationsListService
+    private let priorityCities: [String]
     
     func getSettlements(with transportTypes: String = "train") async throws -> [Settlement] {
         let allStations = try await allStationsService.getAllStations()
@@ -38,10 +40,35 @@ final class CityStationsProvider {
             guard settlementTrainStations.count > 0 else { return nil }
             return Settlement(title: settlement.title, codes: settlement.codes, stations: settlementTrainStations)
         }
-        return settlementsWithTrains
+        
+        return try sortedSettlements(settlementsWithTrains)
     }
     
-    init(client: APIProtocol) {
+    private func sortedSettlements(_ settlements: [Settlement]) throws -> [Settlement] {
+        let priorityOrder = Dictionary(uniqueKeysWithValues: priorityCities.enumerated().map { ($1, $0) })
+        let sortedSettlements = try settlements.sorted { first, second in
+            guard first.title != nil, second.title != nil else {
+                print ("Sorting error: one of the settlements has no title, this should be checked before (there 👆)")
+                throw CityStationsProviderError.sortingError
+            }
+            let firstPriorityRank = priorityOrder[first.title!]
+            let secondPriorityRank = priorityOrder[second.title!]
+            
+            switch (firstPriorityRank, secondPriorityRank) {
+            case (let rank1?, let rank2?):
+                return rank1 < rank2
+            case (_, nil):
+                return true
+            case (nil, _):
+                return false
+            }
+        }
+        return sortedSettlements
+    }
+    
+    
+    init(client: APIProtocol, priorityCities: [String] = PriorityCities.all ?? []) {
         self.allStationsService = StationsListService(client: client)
+        self.priorityCities = priorityCities
     }
 }

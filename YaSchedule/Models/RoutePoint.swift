@@ -9,19 +9,19 @@ import Foundation
 
 struct RoutePoint: Identifiable {
     var id: UUID = .init()
-    var routeLocations: [any Waypoint] = []
+    var routeWaypoints: [any Waypoint] = []
     
     var description: String? {
         var cityName: String?
         var stationName: String?
         
-        for case let city in routeLocations where city is Components.Schemas.Settlement {
+        for case let city in routeWaypoints where city is Components.Schemas.Settlement {
             cityName = (city as! Components.Schemas.Settlement).title
         }
         
         guard var routeDescription = cityName else { return nil }
         
-        for case let station in routeLocations where station is Components.Schemas.Station {
+        for case let station in routeWaypoints where station is Components.Schemas.Station {
             stationName = (station as! Components.Schemas.Station).title
         }
         

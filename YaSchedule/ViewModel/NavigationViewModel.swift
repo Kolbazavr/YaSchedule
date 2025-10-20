@@ -8,14 +8,13 @@
 import SwiftUI
 
 class NavigationViewModel: ObservableObject {
-//    @Published var selectedTab: Int = 0
     @Published var path = NavigationPath()
     
     enum NavDestination: Hashable {
         case locationList(routePointIndex: Int, routeLocationIndex: Int)
         case carrierList
         case searchFilters
-        case carrierDetails
+        case carrierDetails(carrierYaCode: Int?)
     }
     
     func navigate(to destination: NavDestination) {
@@ -27,7 +26,7 @@ class NavigationViewModel: ObservableObject {
     }
     
     func navigateToSelectedLocation(for routePoint: RoutePoint, with index: Int) {
-        let locations = routePoint.routeLocations
+        let locations = routePoint.routeWaypoints
         for locationIndex in locations.isEmpty ? 0..<1 : locations.indices {
             navigate(to: .locationList(routePointIndex: index, routeLocationIndex: locationIndex))
         }

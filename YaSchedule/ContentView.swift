@@ -21,10 +21,7 @@ struct ContentView: View {
         }
         .padding()
         .onAppear {
-//            testSearch()
-//            testCityStations()
-//            testMockClient()
-            
+
 //            testFetchStations()
 //            testCarrierInfo()
 //            testCopyright()
@@ -35,37 +32,7 @@ struct ContentView: View {
 //            testStationsThread()
         }
     }
-    
-    func testSearch() {
-        Task {
-//            let cityStationService = CityStationsService()
-//            try? await cityStationService.testGetSegments()
-        }
-    }
-    
-    func testCityStations() {
-        Task {
-//            let cityStationService = CityStationsService()
-//            let settlements = try? await cityStationService.getSettlements()
-//            let cityNames = settlements?.compactMap { $0.cityName }
-//            print(cityNames ?? [])
-            
-//            let transportTypes = settlements?.compactMap { $0.stations.compactMap(\.stationType.rawValue) }
-//            print(transportTypes)
-        }
-        
-    }
-    
-//    func testMockClient() {
-//        Task {
-//            do {
-//                let client = MockClient()
-//                let service = StationsListService(client: client)
-//                let stations = try await service.getAllStations()
-//                print(stations)
-//            }
-//        }
-//    }
+
     
     func testFetchStations() {
         Task {

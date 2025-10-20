@@ -8,6 +8,6 @@
 import Foundation
 
 enum WaypointType: String, CaseIterable {
-    case origin = "from"
-    case destination = "to"
+    case origin = "Откуда"
+    case destination = "Куда"
 }

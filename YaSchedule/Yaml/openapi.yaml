@@ -546,6 +546,9 @@ components:
           description: Время прибытия
         thread:
           $ref: '#/components/schemas/Thread'
+        has_transfers:
+          type: boolean
+          description: Признак наличия пересадок по ходу рейса
         tickets_info:
           $ref: '#/components/schemas/TicketsInfo'
         duration:

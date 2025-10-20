@@ -17,7 +17,7 @@ struct ItemView: View {
     
     var body: some View {
         Button {
-            let isFinished = viewModel.addItem(item, to: waypointIndex)
+            let isFinished = viewModel.addWaypoint(item, to: waypointIndex)
             isFinished ? navigationVM.navigateToMain() : navigationVM.navigate(to: .locationList(routePointIndex: waypointIndex, routeLocationIndex: 1))
         } label: {
             HStack {
@@ -37,7 +37,7 @@ struct ItemView: View {
     }
     
     func isSelected() -> Bool {
-        let routePointLocations = viewModel.route[waypointIndex].routeLocations
+        let routePointLocations = viewModel.route[waypointIndex].routeWaypoints
         let isSomethingSelected = routePointLocations.count > locationIndex
         return isSomethingSelected ? item.title == routePointLocations[locationIndex].title : false
     }

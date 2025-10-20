@@ -14,5 +14,3 @@ extension Array where Element: Waypoint {
         }
     }
 }
-
-//add segments

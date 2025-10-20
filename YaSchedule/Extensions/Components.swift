@@ -24,3 +24,17 @@ extension Components.Schemas.Station: Waypoint {
         self.codes?.yandex_code ?? ""
     }
 }
+
+extension Components.Schemas.Segment {
+    var departureSwiftDate: Date? {
+        DateFormatter.inputFormatter.date(from: self.departure ?? "")
+    }
+    
+    var arrivalSwiftDate: Date? {
+        DateFormatter.inputFormatter.date(from: self.arrival ?? "")
+    }
+    
+    var departureDayPeriod: DayPeriod? {
+        departureSwiftDate?.dayPeriod
+    }
+}

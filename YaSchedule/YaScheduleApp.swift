@@ -12,12 +12,23 @@ import OpenAPIURLSession
 struct YaScheduleApp: App {
     @StateObject private var appViewModel: AppViewModel
     @StateObject private var navigationVM = NavigationViewModel()
+    @State var showSplashScreen: Bool = true
     
     var body: some Scene {
         WindowGroup {
-            AppView()
-                .environmentObject(appViewModel)
-                .environmentObject(navigationVM)
+            ZStack {
+                AppView()
+                    .environmentObject(appViewModel)
+                    .environmentObject(navigationVM)
+                if showSplashScreen {
+                    SplashScreen()
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    self.showSplashScreen = false
+                }
+            }
         }
     }
     init() {

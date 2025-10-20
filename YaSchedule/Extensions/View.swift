@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    func withCustomBackButton(waypointIndex: Int) -> some View {
-        modifier(BackButtonModifier(waypointIndex: waypointIndex))
+    func withCustomBackButton(waypointIndex: Int? = nil) -> some View {
+        modifier(BackButtonModifier())
     }
 }

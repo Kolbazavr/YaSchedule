@@ -12,7 +12,7 @@ import OpenAPIURLSession
 typealias AllSegments = Components.Schemas.Segments
 
 protocol RoutsSearchServiceProtocol {
-    func getRouts(from startStationCode: String, to endStationCode: String, on date: Date?, offset: Int?, limit: Int?) async throws -> AllSegments
+    func getRouts(from startStationCode: String, to endStationCode: String, on date: Date?, transportTypes: [String]?, offset: Int?, limit: Int?) async throws -> AllSegments
 }
 
 final class RoutsSearchService: RoutsSearchServiceProtocol {
@@ -22,7 +22,7 @@ final class RoutsSearchService: RoutsSearchServiceProtocol {
         self.client = client
     }
     
-    func getRouts(from startStationCode: String, to endStationCode: String, on date: Date? = nil, offset: Int? = nil, limit: Int? = nil) async throws -> AllSegments {
+    func getRouts(from startStationCode: String, to endStationCode: String, on date: Date? = nil, transportTypes: [String]? = ["train"], offset: Int? = nil, limit: Int? = nil) async throws -> AllSegments {
         let response = try await client.getScheduleBetweenStations(
             query: .init(
                 from: startStationCode,

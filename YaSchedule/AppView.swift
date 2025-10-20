@@ -28,14 +28,19 @@ struct AppView: View {
                       
                 case .locationList(routePointIndex: let routePointIndex, routeLocationIndex: let locationIndex):
                     StationListView(waypointIndex: routePointIndex, locationIndex: locationIndex)
-                        .withCustomBackButton(waypointIndex: routePointIndex)
+                        .withCustomBackButton()
 
                 case .carrierList:
-                    Text("CarrierListView")
+                    CarrierListView()
+                        .withCustomBackButton()
+                    
                 case .searchFilters:
-                    Text("FiltersView")
-                case .carrierDetails:
-                    Text("CarrierDetailsView")
+                    FiltersView()
+                        .withCustomBackButton()
+                    
+                case .carrierDetails(carrierYaCode: let yaCode):
+                    CarrierDetailsView(carrierYaCode: yaCode)
+                        .withCustomBackButton()
                 }
             }
         }

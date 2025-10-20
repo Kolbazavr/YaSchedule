@@ -21,13 +21,23 @@ struct StationListView: View {
         VStack {
             SearchBarView(searchText: $viewModel.searchText, textLimit: 20)
                 .padding(.horizontal, 16)
+                .disabled(viewModel.isLoadingSomething)
             ListView(
                 items: viewModel.waypointsToSelect(for: waypointIndex, locationIndex: locationIndex),
                 wayPointIndex: waypointIndex,
                 locationIndex: locationIndex
             )
+            .overlay {
+                if viewModel.isLoadingSomething {
+                    ProgressView("Loading...")
+                } else if viewModel.waypointsToSelect(for: waypointIndex, locationIndex: locationIndex).isEmpty {
+                    Text(locationIndex == 0 ? "Город не найден" : "Станция не найдена")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundStyle(.ypBlack)
+                }
+            }
         }
-        .navigationTitle(Text("City Search"))
+        .navigationTitle(Text(locationIndex == 0 ? "Выбор города" : "Выбор станции"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
     }
