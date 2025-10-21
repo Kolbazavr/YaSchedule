@@ -13,6 +13,7 @@ struct MainSearchView: View {
     var body: some View {
         if let error = viewModel.loadingError {
             ErrorView(error: error)
+                .withDefaultBackground()
         } else {
             VStack(spacing: 44) {
                 StoriesListView()

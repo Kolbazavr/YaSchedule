@@ -12,14 +12,16 @@ struct CarrierListView: View {
     @EnvironmentObject var viewModel: AppViewModel
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             Text("\(viewModel.route[0].description ?? "🖊️") → \(viewModel.route[1].description ?? "🍍")")
                 .font(.system(size: 24, weight: .bold))
+                .foregroundStyle(AppColors.text.color)
                 .padding(16)
             if viewModel.filteredSegments().isEmpty && !viewModel.isLoadingSomething {
                 Spacer()
                 Text("No carriers found")
                     .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(AppColors.text.color)
                     .padding(16)
                 Spacer()
             } else {
@@ -42,6 +44,7 @@ struct CarrierListView: View {
                             .foregroundStyle(.ypBlack)
                         }
                         .listRowSeparator(.hidden)
+                        .listRowBackground(Color.clear)
                         .listRowInsets(.init(top: 4, leading: 16, bottom: 4, trailing: 16))
                         .onAppear {
                             if segment == viewModel.segments.last {

@@ -9,7 +9,7 @@ import Foundation
 
 extension Array where Element: Waypoint {
     func filterBy(title: String) -> [any Waypoint] {
-        return self.filter { waypoint in
+        filter { waypoint in
             title.isEmpty || waypoint.title?.lowercased().contains(title.lowercased()) ?? false
         }
     }

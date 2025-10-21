@@ -10,7 +10,7 @@ import OpenAPIRuntime
 import HTTPTypes
 
 struct APIKeyMiddleware: ClientMiddleware {
-    private let apiKey: String = Secrets.apiKey
+    private let apiKey: String = "6bd6c216-c929-4200-85f9-b45e881d4ad5"
     
     func intercept(
         _ request: HTTPRequest,

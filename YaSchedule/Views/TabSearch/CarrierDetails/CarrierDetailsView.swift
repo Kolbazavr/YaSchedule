@@ -12,6 +12,7 @@ struct CarrierDetailsView: View {
     
     var body: some View {
         Text("Hello, Carrier with \(carrierYaCode ?? 0) code!")
+            .foregroundStyle(AppColors.text.color)
     }
 }
 

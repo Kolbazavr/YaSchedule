@@ -21,6 +21,7 @@ struct ListView: View {
                         .foregroundStyle(.ypBlack)
                         .listRowSeparator(.hidden)
                 }
+                .listRowBackground(Color.clear)
             }
             .listStyle(.plain)
         }

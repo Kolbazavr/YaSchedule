@@ -20,6 +20,7 @@ struct SearchBarView: View {
                 .autocorrectionDisabled()
                 .textInputAutocapitalization(.never)
                 .font(.system(size: 17))
+                .foregroundStyle(AppColors.text.color)
                 .onChange(of: searchText) { oldText, newText in
                     newText.count > textLimit ? searchText = oldText : ()
                 }
@@ -37,7 +38,7 @@ struct SearchBarView: View {
 
         }
         .padding(.vertical, 7)
-        .background(Color(.systemGray6))
+        .background(AppColors.searchBarBackground.color)
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
     }
 }

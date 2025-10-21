@@ -28,9 +28,11 @@ struct ItemView: View {
                 }
                 Text(item.description)
                     .font(.system(size: 17, weight: .regular))
+                    .foregroundStyle(AppColors.text.color)
                 Spacer()
                 Image(systemName: "chevron.right")
                     .font(.system(size: 24, weight: .regular))
+                    .foregroundStyle(AppColors.text.color)
             }
         }
         .tint(.ypBlack)

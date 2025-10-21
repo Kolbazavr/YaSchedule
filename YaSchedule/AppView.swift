@@ -10,39 +10,50 @@ import SwiftUI
 struct AppView: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     
+    init() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(AppColors.background.color)
+        appearance.shadowColor = .black.withAlphaComponent(0.3)
+        
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+    }
+    
     var body: some View {
         NavigationStack(path: $navigationVM.path) {
             TabView {
                 MainSearchView()
+                    .withDefaultBackground()
                     .tabItem {
-                        Image(systemName: "arrow.up.message.fill")
+                        Image(.icSchedule).renderingMode(.template)
                     }
                 SettingsView()
+                    .withDefaultBackground()
                     .tabItem {
-                        Image(systemName: "gearshape.fill")
+                        Image(.icSettings).renderingMode(.template)
                     }
             }
-            .tint(.black)
+            .tint(.ypBlack)
             .navigationDestination(for: NavigationViewModel.NavDestination.self) { viewToShow in
-                switch viewToShow {
-                      
-                case .locationList(routePointIndex: let routePointIndex, routeLocationIndex: let locationIndex):
-                    StationListView(waypointIndex: routePointIndex, locationIndex: locationIndex)
-                        .withCustomBackButton()
-
-                case .carrierList:
-                    CarrierListView()
-                        .withCustomBackButton()
-                    
-                case .searchFilters:
-                    FiltersView()
-                        .withCustomBackButton()
-                    
-                case .carrierDetails(carrierYaCode: let yaCode):
-                    CarrierDetailsView(carrierYaCode: yaCode)
-                        .withCustomBackButton()
-                }
+                destinationView(viewToShow)
+                    .withDefaultBackground()
+                    .withCustomBackButton()
             }
+        }
+    }
+    
+    @ViewBuilder
+    func destinationView(_ destination: NavigationViewModel.NavDestination) -> some View {
+        switch destination {
+        case .locationList(routePointIndex: let routePointIndex, routeLocationIndex: let locationIndex):
+            StationListView(waypointIndex: routePointIndex, locationIndex: locationIndex)
+        case .carrierList:
+            CarrierListView()
+        case .searchFilters:
+            FiltersView()
+        case .carrierDetails(carrierYaCode: let yaCode):
+            CarrierDetailsView(carrierYaCode: yaCode)
         }
     }
         

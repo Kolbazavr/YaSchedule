@@ -42,6 +42,7 @@ enum ErrorView: View {
                 }
             }
             .font(.system(size: 24, weight: .bold))
+            .foregroundStyle(AppColors.text.color)
         }
     }
 }

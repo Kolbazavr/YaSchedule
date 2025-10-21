@@ -33,7 +33,7 @@ struct StationListView: View {
                 } else if viewModel.waypointsToSelect(for: waypointIndex, locationIndex: locationIndex).isEmpty {
                     Text(locationIndex == 0 ? "Город не найден" : "Станция не найдена")
                         .font(.system(size: 24, weight: .bold))
-                        .foregroundStyle(.ypBlack)
+                        .foregroundStyle(AppColors.text.color)
                 }
             }
         }

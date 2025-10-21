@@ -52,7 +52,7 @@ struct WaypointSelectorView: View {
                         .fill(Color.white)
                         .frame(width: 36, height: 36)
                         .overlay {
-                            Image(systemName: "arrow.2.squarepath")
+                            Image(.icReverse).renderingMode(.template).foregroundStyle(.ypBlue)
                         }
                 }
             }
@@ -78,7 +78,7 @@ struct WaypointSelectorView: View {
                             .fill(.ypBlue)
                         Text("Search")
                             .font(.system(size: 17, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(.ypWhiteUni)
                     }
                     .frame(width: 150, height: 60)
                 }

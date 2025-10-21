@@ -12,3 +12,9 @@ extension View {
         modifier(BackButtonModifier())
     }
 }
+
+extension View {
+    func withDefaultBackground() -> some View {
+        self.modifier(DefaultBackground())
+    }
+}

@@ -35,5 +35,4 @@ class NavigationViewModel: ObservableObject {
     func navigateToMain() {
         path.removeLast(path.count)
     }
-    
 }

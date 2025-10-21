@@ -54,13 +54,10 @@ final class CityStationsProvider {
             let firstPriorityRank = priorityOrder[first.title!]
             let secondPriorityRank = priorityOrder[second.title!]
             
-            switch (firstPriorityRank, secondPriorityRank) {
-            case (let rank1?, let rank2?):
-                return rank1 < rank2
-            case (_, nil):
-                return true
-            case (nil, _):
-                return false
+            return switch (firstPriorityRank, secondPriorityRank) {
+            case (let rank1?, let rank2?): rank1 < rank2
+            case (_, nil): true
+            case (nil, _): false
             }
         }
         return sortedSettlements

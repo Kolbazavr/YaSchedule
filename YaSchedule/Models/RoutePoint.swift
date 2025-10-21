@@ -22,7 +22,7 @@ struct RoutePoint: Identifiable {
         guard var routeDescription = cityName else { return nil }
         
         for case let station in routeWaypoints where station is Components.Schemas.Station {
-            stationName = (station as! Components.Schemas.Station).title
+            stationName = (station as? Components.Schemas.Station)?.title ?? ""
         }
         
         if let stationName {
