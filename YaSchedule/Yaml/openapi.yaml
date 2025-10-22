@@ -19,7 +19,7 @@ paths:
         - name: apikey
           in: query
           description: API key
-          required: true
+          required: false
           schema:
             type: string
         - name: format
@@ -45,7 +45,7 @@ paths:
         - name: apikey
           in: query
           description: API key
-          required: true
+          required: false
           schema:
             type: string
         - name: lat
@@ -119,7 +119,7 @@ paths:
         - name: apikey
           in: query
           description: API key
-          required: true
+          required: false
           schema:
             type: string
         - name: from
@@ -199,7 +199,7 @@ paths:
         - name: apikey
           in: query
           description: API key
-          required: true
+          required: false
           schema:
             type: string
         - name: station
@@ -273,7 +273,7 @@ paths:
         - name: apikey
           in: query
           description: API key
-          required: true
+          required: false
           schema:
             type: string
         - name: uid
@@ -335,7 +335,7 @@ paths:
         - name: apikey
           in: query
           description: API key
-          required: true
+          required: false
           schema:
             type: string
         - name: lat
@@ -385,7 +385,7 @@ paths:
         - name: apikey
           in: query
           description: API key
-          required: true
+          required: false
           schema:
             type: string
         - name: code
@@ -429,7 +429,7 @@ paths:
         - name: apikey
           in: query
           description: API key
-          required: true
+          required: false
           schema:
             type: string
         - name: lang
@@ -546,6 +546,9 @@ components:
           description: Время прибытия
         thread:
           $ref: '#/components/schemas/Thread'
+        has_transfers:
+          type: boolean
+          description: Признак наличия пересадок по ходу рейса
         tickets_info:
           $ref: '#/components/schemas/TicketsInfo'
         duration:

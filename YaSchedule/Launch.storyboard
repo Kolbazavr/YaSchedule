@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LSBackground" translatesAutoresizingMaskIntoConstraints="NO" id="EqU-M7-Tb2">
+                                <rect key="frame" x="9" y="0.0" width="375" height="852"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="EqU-M7-Tb2" secondAttribute="height" multiplier="125:284" id="ax4-9s-qZT"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cvd-nj-0QC" userLabel="OuterRect">
+                                <rect key="frame" x="159.66666666666666" y="0.0" width="74" height="516"/>
+                                <color key="backgroundColor" name="ypWhiteUni"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="74" id="gdt-nm-NzS"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="for-Oc-Ft4" userLabel="InnerRect">
+                                <rect key="frame" x="174.66666666666666" y="0.0" width="44" height="516"/>
+                                <color key="backgroundColor" name="ypBlue"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="byO-jj-436"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ypLogoBackground" translatesAutoresizingMaskIntoConstraints="NO" id="mnG-aK-3A7">
+                                <rect key="frame" x="106.66666666666669" y="426" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="0gt-jb-atK"/>
+                                    <constraint firstAttribute="width" constant="180" id="tAf-vk-uec"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ypLogo" translatesAutoresizingMaskIntoConstraints="NO" id="eBf-ds-vpW">
+                                <rect key="frame" x="159.66666666666666" y="476" width="74" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="SLf-6Z-RLD"/>
+                                    <constraint firstAttribute="width" constant="74" id="bfz-1W-R6V"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="eBf-ds-vpW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="90" id="3zf-DP-AXw"/>
+                            <constraint firstItem="for-Oc-Ft4" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="8YQ-cI-MXO"/>
+                            <constraint firstItem="Cvd-nj-0QC" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="HcV-rv-1lc"/>
+                            <constraint firstAttribute="bottom" secondItem="EqU-M7-Tb2" secondAttribute="bottom" id="Lox-Kw-8sn"/>
+                            <constraint firstItem="for-Oc-Ft4" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="90" id="U8i-QR-6tY"/>
+                            <constraint firstItem="EqU-M7-Tb2" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="Wya-ND-8XQ"/>
+                            <constraint firstItem="EqU-M7-Tb2" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="XbV-is-Lfk"/>
+                            <constraint firstItem="EqU-M7-Tb2" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="a4O-k0-vWO"/>
+                            <constraint firstItem="mnG-aK-3A7" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="bJV-PV-8rn"/>
+                            <constraint firstItem="Cvd-nj-0QC" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="bQQ-Gh-Ifq"/>
+                            <constraint firstItem="for-Oc-Ft4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="hED-be-oJo"/>
+                            <constraint firstItem="Cvd-nj-0QC" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="90" id="nFI-TR-z0A"/>
+                            <constraint firstItem="mnG-aK-3A7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="90" id="wFO-DB-nVM"/>
+                            <constraint firstItem="eBf-ds-vpW" firstAttribute="centerX" secondItem="Bcu-3y-fUS" secondAttribute="centerX" id="xh1-ND-jfJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LSBackground" width="375" height="812"/>
+        <image name="ypLogo" width="428" height="444"/>
+        <image name="ypLogoBackground" width="1024" height="1024"/>
+        <namedColor name="ypBlue">
+            <color red="0.21568627450980393" green="0.44705882352941179" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ypWhiteUni">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

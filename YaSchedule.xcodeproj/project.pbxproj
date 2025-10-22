@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ECB7F2C12EA302F600D85796 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = ECB7F2C02EA302F600D85796 /* Kingfisher */; };
 		ECDA08152E8984DF008424D3 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA08142E8984DF008424D3 /* OpenAPIRuntime */; };
 		ECDA08182E898505008424D3 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = ECDA08172E898505008424D3 /* OpenAPIURLSession */; };
 /* End PBXBuildFile section */
@@ -15,9 +16,22 @@
 		ECDA07ED2E897CC8008424D3 /* YaSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		ECB7F3812EA503F200D85796 /* Exceptions for "YaSchedule" folder in "YaSchedule" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = ECDA07EC2E897CC8008424D3 /* YaSchedule */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		ECDA07EF2E897CC8008424D3 /* YaSchedule */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				ECB7F3812EA503F200D85796 /* Exceptions for "YaSchedule" folder in "YaSchedule" target */,
+			);
 			path = YaSchedule;
 			sourceTree = "<group>";
 		};
@@ -28,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECB7F2C12EA302F600D85796 /* Kingfisher in Frameworks */,
 				ECDA08152E8984DF008424D3 /* OpenAPIRuntime in Frameworks */,
 				ECDA08182E898505008424D3 /* OpenAPIURLSession in Frameworks */,
 			);
@@ -75,6 +90,7 @@
 			packageProductDependencies = (
 				ECDA08142E8984DF008424D3 /* OpenAPIRuntime */,
 				ECDA08172E898505008424D3 /* OpenAPIURLSession */,
+				ECB7F2C02EA302F600D85796 /* Kingfisher */,
 			);
 			productName = YaSchedule;
 			productReference = ECDA07ED2E897CC8008424D3 /* YaSchedule.app */;
@@ -101,6 +117,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = ECDA07E42E897CC8008424D3;
 			minimizedProjectReferenceProxies = 1;
@@ -108,6 +125,7 @@
 				ECDA08102E8984BE008424D3 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */,
 				ECDA08132E8984DF008424D3 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */,
 				ECDA08162E898505008424D3 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
+				ECB7F2BF2EA302F600D85796 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ECDA07EE2E897CC8008424D3 /* Products */;
@@ -206,6 +224,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -262,6 +281,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -277,9 +297,11 @@
 				DEVELOPMENT_TEAM = 5BH7YFNJFP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YaSchedule/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Launch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -311,9 +333,11 @@
 				DEVELOPMENT_TEAM = 5BH7YFNJFP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = YaSchedule/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = Launch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -358,6 +382,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		ECB7F2BF2EA302F600D85796 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.0;
+			};
+		};
 		ECDA08102E8984BE008424D3 /* XCRemoteSwiftPackageReference "swift-openapi-generator" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-openapi-generator";
@@ -385,6 +417,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		ECB7F2C02EA302F600D85796 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ECB7F2BF2EA302F600D85796 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		ECDA08142E8984DF008424D3 /* OpenAPIRuntime */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = ECDA08132E8984DF008424D3 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */;
