@@ -20,13 +20,14 @@ struct FiltersView: View {
                 HStack {
                     Text(filterOption.rawValue)
                         .font(.system(size: 17))
+                        .foregroundStyle(AppColors.text.color)
                     Spacer()
                     Button {
                         viewModel.toggleFilterOption(filterOption)
                     } label: {
                         Image(systemName: viewModel.selectedDayPeriods.contains(filterOption) ? "checkmark.square.fill" : "square")
                             .font(.system(size: 24))
-                            .foregroundStyle(.ypBlack)
+                            .foregroundStyle(AppColors.text.color)
                     }
                 }
                 .frame(height: 60)
@@ -39,13 +40,14 @@ struct FiltersView: View {
                 HStack {
                     Text(isAllowed ? "Yes" : "No")
                         .font(.system(size: 17))
+                        .foregroundStyle(AppColors.text.color)
                     Spacer()
                     Button {
                         viewModel.isTransfersAllowed.toggle()
                     } label: {
                         Image(systemName: viewModel.isTransfersAllowed == isAllowed ? "record.circle" : "poweroff")
                             .font(.system(size: 20))
-                            .foregroundStyle(.ypBlack)
+                            .foregroundStyle(AppColors.text.color)
                     }
                 }
                 .frame(height: 60)

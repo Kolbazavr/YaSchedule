@@ -16,19 +16,23 @@ struct RoutePoint: Identifiable {
         var stationName: String?
         
         for case let city in routeWaypoints where city is Components.Schemas.Settlement {
-            cityName = (city as! Components.Schemas.Settlement).title
+            cityName = (city as? Components.Schemas.Settlement)?.title
         }
         
         guard var routeDescription = cityName else { return nil }
         
         for case let station in routeWaypoints where station is Components.Schemas.Station {
-            stationName = (station as? Components.Schemas.Station)?.title ?? ""
+            stationName = (station as? Components.Schemas.Station)?.title
         }
         
         if let stationName {
-            routeDescription += " (\(stationName))"
+            let isStationNameAlreadyHasCityName: Bool = stationName.lowercased().contains(routeDescription.lowercased() + " (")
+            if isStationNameAlreadyHasCityName {
+                routeDescription = stationName
+            } else {
+                routeDescription += " (\(stationName))"
+            }
         }
-        
         return routeDescription
     }
 }

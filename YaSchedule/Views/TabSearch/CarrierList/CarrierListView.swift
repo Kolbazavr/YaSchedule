@@ -18,12 +18,7 @@ struct CarrierListView: View {
                 .foregroundStyle(AppColors.text.color)
                 .padding(16)
             if viewModel.filteredSegments().isEmpty && !viewModel.isLoadingSomething {
-                Spacer()
-                Text("No carriers found")
-                    .font(.system(size: 18, weight: .bold))
-                    .foregroundStyle(AppColors.text.color)
-                    .padding(16)
-                Spacer()
+                nothingFoundView()
             } else {
                 List {
                     ForEach(viewModel.filteredSegments(), id: \.self) { segment in
@@ -76,6 +71,19 @@ struct CarrierListView: View {
                 ProgressView("Searching carriers...")
             }
         }
+    }
+    
+    @ViewBuilder
+    func nothingFoundView() -> some View {
+        Spacer()
+        HStack {
+            Text("No carriers found")
+                .font(.system(size: 18, weight: .bold))
+                .foregroundStyle(AppColors.text.color)
+                .padding(16)
+        }
+        .frame(maxWidth: .infinity)
+        Spacer()
     }
 }
 
