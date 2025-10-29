@@ -1,0 +1,63 @@
+[
+    {
+        "title": "Swift 6.0 Brings Enhanced Concurrency Features",
+        "text": "Apple's latest Swift 6.0 release introduces groundbreaking improvements to the concurrency model, making async/await more powerful and efficient for iOS development.",
+        "previewName": "Story1Preview",
+        "imageNames": ["Story1-1", "Story1-2"]
+    },
+    {
+        "title": "SwiftUI 5.0 Revolutionizes Declarative UI Development",
+        "text": "The new SwiftUI 5.0 framework includes advanced animation capabilities and improved state management, transforming how developers build user interfaces across Apple platforms.",
+        "previewName": "Story2Preview",
+        "imageNames": ["Story2-1", "Story2-2"]
+    },
+    {
+        "title": "Swift Package Manager Gains Cross-Platform Support",
+        "text": "Apple expands Swift Package Manager to seamlessly handle dependencies across iOS, macOS, watchOS, and even Linux environments with enhanced security features.",
+        "previewName": "Story3Preview",
+        "imageNames": ["Story3-1", "Story3-2"]
+    },
+    {
+        "title": "Machine Learning Integration in Swift Reaches New Heights",
+        "text": "Core ML and Create ML now offer unprecedented integration with Swift, enabling developers to build sophisticated AI features with minimal code and maximum performance.",
+        "previewName": "Story4Preview",
+        "imageNames": ["Story4-1", "Story4-2"]
+    },
+    {
+        "title": "Swift Achieves Record Adoption in Enterprise Apps",
+        "text": "Recent surveys show Swift usage in enterprise applications has grown by 45% year-over-year, driven by its safety features and performance characteristics.",
+        "previewName": "Story5Preview",
+        "imageNames": ["Story5-1", "Story5-2"]
+    },
+    {
+        "title": "New Swift Compiler Dramatically Reduces Build Times",
+        "text": "The latest Swift compiler updates have shown up to 60% improvement in incremental build times, significantly boosting developer productivity across large codebases.",
+        "previewName": "Story6Preview",
+        "imageNames": ["Story6-1", "Story6-2"]
+    },
+    {
+        "title": "Swift for Server-Side Development Gains Popularity",
+        "text": "Vapor and other Swift server frameworks are seeing massive adoption, with major companies migrating their backend services to Swift for better performance and type safety.",
+        "previewName": "Story7Preview",
+        "imageNames": ["Story7-1", "Story7-2"]
+    },
+    {
+        "title": "Apple Announces Swift Education Initiative for 2024",
+        "text": "Apple's new educational program aims to teach Swift programming to over 1 million students worldwide through updated curriculum and free development resources.",
+        "previewName": "Story8Preview",
+        "imageNames": ["Story8-1", "Story8-2"]
+    },
+    {
+        "title": "Swift Open Source Community Releases Major Updates",
+        "text": "The Swift open source community has contributed significant enhancements to the standard library, including new collection types and improved string processing capabilities.",
+        "previewName": "Story9Preview",
+        "imageNames": ["Story9-1", "Story9-2"]
+    },
+    {
+        "title": "4 Stories Test",
+        "text": "Some text here",
+        "previewName": "Story10Preview",
+        "imageNames": ["Story10-1", "Story10-2", "Story10-3", "Story10-4"]
+    }
+]
+
