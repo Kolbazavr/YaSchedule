@@ -8,24 +8,28 @@
 import SwiftUI
 
 struct StoriesListView: View {
+    @EnvironmentObject private var storiesManager: StoriesManager
+
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack(spacing: 12) {
-                StoryCardView()
-                StoryCardView()
-                StoryCardView()
-                StoryCardView()
-                StoryCardView()
-                StoryCardView()
+                ForEach(storiesManager.stories) { story in
+                    StoryCardView(story: story)
+                        .onTapGesture {
+                            withAnimation(.easeOut(duration: 0.3)) {
+                                storiesManager.showStory(story)
+                            }
+                        }
+                }
             }
-            
+            .padding(.horizontal, 16)
         }
         .scrollIndicators(.hidden)
-        .padding(.horizontal, 16)
         .frame(height: 148)
     }
 }
 
 #Preview {
     StoriesListView()
+        .environmentObject(StoriesManager())
 }

@@ -14,7 +14,8 @@ class NavigationViewModel: ObservableObject {
         case locationList(routePointIndex: Int, routeLocationIndex: Int)
         case carrierList
         case searchFilters
-        case carrierDetails(carrierYaCode: Int?)
+        case carrierDetails(carrier: Components.Schemas.Carrier)
+        case copyright
     }
     
     func navigate(to destination: NavDestination) {

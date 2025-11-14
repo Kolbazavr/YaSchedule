@@ -53,7 +53,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "USE_MOCK"
-            value = "true"
+            value = "false"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

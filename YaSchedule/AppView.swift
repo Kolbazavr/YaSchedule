@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AppView: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
+    @EnvironmentObject private var storiesManager: StoriesManager
     
     init() {
         let appearance = UITabBarAppearance()
@@ -34,11 +35,16 @@ struct AppView: View {
                         Image(.icSettings).renderingMode(.template)
                     }
             }
-            .tint(.ypBlack)
             .navigationDestination(for: NavigationViewModel.NavDestination.self) { viewToShow in
                 destinationView(viewToShow)
                     .withDefaultBackground()
                     .withCustomBackButton()
+            }
+        }
+        .overlay {
+            if let selectedStory = storiesManager.selectedStory {
+                FullScreenStoryView(story: selectedStory)
+                    .withDefaultBackground()
             }
         }
     }
@@ -52,11 +58,12 @@ struct AppView: View {
             CarrierListView()
         case .searchFilters:
             FiltersView()
-        case .carrierDetails(carrierYaCode: let yaCode):
-            CarrierDetailsView(carrierYaCode: yaCode)
+        case .carrierDetails(carrier: let carrier):
+            CarrierDetailsView(carrier: carrier)
+        case .copyright:
+            CopyrightView()
         }
     }
-        
 }
 
 #Preview {
@@ -66,4 +73,6 @@ struct AppView: View {
     AppView()
         .environmentObject(NavigationViewModel())
         .environmentObject(AppViewModel(cityStationsProvider: cityStationsProvider, routesProvider: routesProvider))
+        .environmentObject(StoriesManager())
+        .environmentObject(NamespaceWrapper(Namespace().wrappedValue))
 }

@@ -23,8 +23,8 @@ struct CarrierListView: View {
                 List {
                     ForEach(viewModel.filteredSegments(), id: \.self) { segment in
                         Button {
-                            let carrierCode = segment.thread?.carrier?.code
-                            navigationVM.navigate(to: .carrierDetails(carrierYaCode: carrierCode))
+                            guard let carrier = segment.thread?.carrier else { return }
+                            navigationVM.navigate(to: .carrierDetails(carrier: carrier))
                         } label: {
                             CarrierCardView(
                                 departureTime: segment.departure?.toTimeOnly() ?? "🚂",
@@ -69,6 +69,9 @@ struct CarrierListView: View {
         .overlay {
             if viewModel.isLoadingSomething {
                 ProgressView("Searching carriers...")
+                    .progressViewStyle(CircularProgressViewStyle(tint: .ypBlue))
+                    .foregroundColor(.ypBlue)
+                    .scaleEffect(1.2)
             }
         }
     }

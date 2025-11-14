@@ -12,7 +12,11 @@ import OpenAPIURLSession
 struct YaScheduleApp: App {
     @StateObject private var appViewModel: AppViewModel
     @StateObject private var navigationVM = NavigationViewModel()
-    @State var showSplashScreen: Bool = true
+    @StateObject private var themeManager = ThemeManager()
+    @StateObject private var storiesManager = StoriesManager()
+    @State private var showSplashScreen: Bool = true
+    
+    @Namespace var appNamespace
     
     var body: some Scene {
         WindowGroup {
@@ -20,6 +24,11 @@ struct YaScheduleApp: App {
                 AppView()
                     .environmentObject(appViewModel)
                     .environmentObject(navigationVM)
+                    .environmentObject(themeManager)
+                    .environmentObject(storiesManager)
+                    .environmentObject(NamespaceWrapper(appNamespace))
+                
+                    .preferredColorScheme(themeManager.currentColorScheme)
                 if showSplashScreen {
                     SplashScreen()
                 }
