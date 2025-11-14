@@ -51,7 +51,7 @@ struct WebView: UIViewRepresentable {
         webView.configuration.websiteDataStore.httpCookieStore.setCookie(cookie)
     }
     
-    class Coordinator: NSObject, WKNavigationDelegate {
+    final class Coordinator: NSObject, WKNavigationDelegate {
         let parent: WebView
         
         init(_ parent: WebView) {

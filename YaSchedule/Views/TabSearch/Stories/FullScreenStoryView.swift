@@ -17,7 +17,7 @@ struct FullScreenStoryView: View {
     
     var body: some View {
         ZStack {
-            Color.ypBlackUni.ignoresSafeArea(edges: .all)
+            Color.ypBlackUni.ignoresSafeArea()
             
             Image(story.imageNames[storiesManager.storySegmentIndex])
                 .resizable()

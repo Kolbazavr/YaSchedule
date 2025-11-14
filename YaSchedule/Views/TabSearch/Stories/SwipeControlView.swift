@@ -13,18 +13,6 @@ struct SwipeControlView: View {
     let swipeLeftAction: () -> Void
     let swipeRightAction: () -> Void
     
-    init(
-        swipeUpAction: @escaping () -> Void = {},
-        swipeDownAction: @escaping () -> Void = {},
-        swipeLeftAction: @escaping () -> Void = {},
-        swipeRightAction: @escaping () -> Void = {}
-    ) {
-        self.swipeUpAction = swipeUpAction
-        self.swipeDownAction = swipeDownAction
-        self.swipeLeftAction = swipeLeftAction
-        self.swipeRightAction = swipeRightAction
-    }
-    
     var body: some View {
         HStack {
             Group {

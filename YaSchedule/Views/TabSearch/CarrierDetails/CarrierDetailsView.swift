@@ -9,8 +9,8 @@ import SwiftUI
 import Kingfisher
 
 struct CarrierDetailsView: View {
-    @State var carrierPhones: [String] = []
-    @State var carrierEmails: [String] = []
+    @State private var carrierPhones: [String] = []
+    @State private var carrierEmails: [String] = []
     
     let carrier: Components.Schemas.Carrier
     private let contactsExtractor: ContactsExtractor = .init()
