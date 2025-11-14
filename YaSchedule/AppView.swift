@@ -10,6 +10,7 @@ import SwiftUI
 struct AppView: View {
     @EnvironmentObject private var navigationVM: NavigationViewModel
     @EnvironmentObject private var storiesManager: StoriesManager
+    @EnvironmentObject private var appViewModel: AppViewModel
     
     init() {
         let appearance = UITabBarAppearance()
@@ -39,6 +40,9 @@ struct AppView: View {
                 destinationView(viewToShow)
                     .withDefaultBackground()
                     .withCustomBackButton()
+            }
+            .task {
+                await appViewModel.loadSettlements()
             }
         }
         .overlay {

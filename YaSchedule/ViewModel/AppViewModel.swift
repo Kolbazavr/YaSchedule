@@ -38,7 +38,6 @@ final class AppViewModel: ObservableObject {
     init(cityStationsProvider: CityStationsProvider, routesProvider: RoutesProvider) {
         self.cityStationsProvider = cityStationsProvider
         self.routesProvider = routesProvider
-        loadSettlements()
     }
     
     func isReadyToSearch() -> Bool {
@@ -85,7 +84,7 @@ final class AppViewModel: ObservableObject {
         }
     }
     
-    func searchRoutes(_ isNewSearch: Bool = true) {
+    func searchRoutes(_ isNewSearch: Bool = true) async {
         if isNewSearch { reset() }
         
         guard isReadyToSearch() else { return }
@@ -95,35 +94,32 @@ final class AppViewModel: ObservableObject {
         isLoadingSomething = true
         loadingError = nil
         
-        Task {
-            do {
-                guard let origin = route[0].routeWaypoints.last,
-                      let destination = route[1].routeWaypoints.last
-                else { throw AppViewModelError.waypointsNotFound }
-                let originCode = origin.yandexCode
-                let destinationCode = destination.yandexCode
-                let fetchedSegments = try await routesProvider.getSegments(
-                    from: originCode,
-                    to: destinationCode,
-                    limit: searchResultsLimit,
-                    offset: segments.count
-                )
-
-                if fetchedSegments.isEmpty {
-                    foundNothing = true
-                } else {
-                    segments.append(contentsOf: fetchedSegments)
-                }
-            } catch {
-                print(#function, "Failed to fetch routes: \(error)")
-                loadingError = error
-                isLoadingSomething = false
+        defer { isLoadingSomething = false }
+        
+        do {
+            guard let origin = route[0].routeWaypoints.last,
+                  let destination = route[1].routeWaypoints.last
+            else { throw AppViewModelError.waypointsNotFound }
+            
+            let fetchedSegments = try await routesProvider.getSegments(
+                from: origin.yandexCode,
+                to: destination.yandexCode,
+                limit: searchResultsLimit,
+                offset: segments.count
+            )
+            
+            if fetchedSegments.isEmpty {
+                foundNothing = true
+            } else {
+                segments.append(contentsOf: fetchedSegments)
             }
-            isLoadingSomething = false
             
             if !foundNothing && filteredSegments().isEmpty && segments.count < totalSegmentsLimit {
-                searchRoutes()
+                await searchRoutes(false)
             }
+        } catch {
+            print(#function, "Failed to fetch routes: \(error)")
+            loadingError = error
         }
     }
     
@@ -131,23 +127,25 @@ final class AppViewModel: ObservableObject {
         route.reverse()
     }
     
+    func loadSettlements() async {
+        guard allSettlements.isEmpty else { return }
+        isLoadingSomething = true
+        loadingError = nil
+        
+        defer { isLoadingSomething = false }
+        
+        do {
+            allSettlements = try await cityStationsProvider.getSettlements()
+        } catch {
+            print("Error loading all settlements: \(error)")
+            loadingError = error
+        }
+    }
+    
     private func reset() {
         segments.removeAll()
         isTransfersAllowed = true
         foundNothing = false
         selectedDayPeriods.removeAll()
-    }
-    
-    private func loadSettlements() {
-        Task {
-            do {
-                allSettlements = try await cityStationsProvider.getSettlements()
-            } catch {
-                print("Error loading all settlements: \(error)")
-                loadingError = error
-                isLoadingSomething = false
-            }
-            isLoadingSomething = false
-        }
     }
 }

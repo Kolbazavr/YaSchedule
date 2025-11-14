@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RoutesProvider {
+actor RoutesProvider {
     typealias Segment = Components.Schemas.Segment
     private let routsSearchService: RoutsSearchService
     private let resultsLimit = 20

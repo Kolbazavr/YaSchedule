@@ -70,7 +70,7 @@ struct WaypointSelectorView: View {
             }
             if viewModel.isReadyToSearch() {
                 Button {
-                    viewModel.searchRoutes()
+                    Task { await viewModel.searchRoutes() }
                     navigationVM.navigate(to: .carrierList)
                 } label: {
                     ZStack {

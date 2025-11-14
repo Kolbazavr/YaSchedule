@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-class NavigationViewModel: ObservableObject {
+@MainActor
+final class NavigationViewModel: ObservableObject {
     @Published var path = NavigationPath()
     
     enum NavDestination: Hashable {

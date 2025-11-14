@@ -15,7 +15,7 @@ protocol StationScheduleServiceProtocol {
     func getSchedule(of station: String) async throws -> Schedule
 }
 
-final class StationScheduleService: StationScheduleServiceProtocol {
+actor StationScheduleService: StationScheduleServiceProtocol {
     private let client: APIProtocol
     
     init(client: APIProtocol) {
