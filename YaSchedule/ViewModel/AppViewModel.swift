@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Waypoint: CustomStringConvertible, Hashable {
+protocol Waypoint: CustomStringConvertible, Hashable, Sendable {
     var title: String? { get }
     var yandexCode: String { get }
 }
