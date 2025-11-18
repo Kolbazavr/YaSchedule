@@ -15,7 +15,7 @@ protocol StationsListServiceProtocol {
     func getAllStations() async throws -> AllStations
 }
 
-final class StationsListService: StationsListServiceProtocol {
+actor StationsListService: StationsListServiceProtocol {
     private let client: APIProtocol
     private let decoder = JSONDecoder()
     

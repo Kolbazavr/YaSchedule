@@ -15,7 +15,7 @@ protocol RoutsSearchServiceProtocol {
     func getRouts(from startStationCode: String, to endStationCode: String, on date: Date?, transportTypes: [String]?, offset: Int?, limit: Int?) async throws -> AllSegments
 }
 
-final class RoutsSearchService: RoutsSearchServiceProtocol {
+actor RoutsSearchService: RoutsSearchServiceProtocol {
     private let client: APIProtocol
     
     init(client: APIProtocol) {

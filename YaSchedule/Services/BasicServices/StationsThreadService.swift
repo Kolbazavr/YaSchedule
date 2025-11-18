@@ -15,7 +15,7 @@ protocol StationsThreadServiceProtocol {
     func getStationsThread(threadUid: String) async throws -> StationsThread
 }
 
-final class StationsThreadService: StationsThreadServiceProtocol {
+actor StationsThreadService: StationsThreadServiceProtocol {
     private let client: APIProtocol
     
     init(client: APIProtocol) {

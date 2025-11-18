@@ -43,7 +43,7 @@ struct CarrierListView: View {
                         .listRowInsets(.init(top: 4, leading: 16, bottom: 4, trailing: 16))
                         .onAppear {
                             if segment == viewModel.segments.last {
-                                viewModel.searchRoutes(false)
+                                Task { await viewModel.searchRoutes(false) }
                             }
                         }
                     }

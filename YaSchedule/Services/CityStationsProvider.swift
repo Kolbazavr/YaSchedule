@@ -12,7 +12,7 @@ enum CityStationsProviderError: Error {
     case sortingError
 }
 
-final class CityStationsProvider {
+actor CityStationsProvider {
     typealias Settlement = Components.Schemas.Settlement
     private let allStationsService: StationsListService
     private let priorityCities: [String]

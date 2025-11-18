@@ -9,8 +9,7 @@ import SwiftUI
 import Kingfisher
 
 struct CarrierDetailsView: View {
-    @State private var carrierPhones: [String] = []
-    @State private var carrierEmails: [String] = []
+    @StateObject private var vm = CarrierDetailsVM()
     
     let carrier: Components.Schemas.Carrier
     private let contactsExtractor: ContactsExtractor = .init()
@@ -47,7 +46,7 @@ struct CarrierDetailsView: View {
         .frame(maxWidth: .infinity, alignment: .topLeading)
         .padding(.horizontal, 16)
         .onAppear {
-            extractContacts()
+            vm.extractContacts(from: carrier)
         }
     }
     
@@ -57,7 +56,7 @@ struct CarrierDetailsView: View {
             Text("E-mail")
                 .font(.system(size: 17, weight: .regular))
                 .foregroundStyle(.ypBlack)
-            ForEach(carrierEmails, id: \.self) { email in
+            ForEach(vm.carrierEmails, id: \.self) { email in
                 Button {
                     if let url = URL(string:"mailto:\(email)") {
                         UIApplication.shared.open(url)
@@ -67,7 +66,7 @@ struct CarrierDetailsView: View {
                         .font(.system(size: 12, weight: .regular))
                         .foregroundStyle(.ypBlue)
                 }
-                .padding(.bottom, carrierEmails.last == email ? 0 : 8)
+                .padding(.bottom, vm.carrierEmails.last == email ? 0 : 8)
             }
         }
     }
@@ -78,7 +77,7 @@ struct CarrierDetailsView: View {
             Text("Телефон")
                 .font(.system(size: 17, weight: .regular))
                 .foregroundStyle(.ypBlack)
-            ForEach(carrierPhones, id: \.self) { phone in
+            ForEach(vm.carrierPhones, id: \.self) { phone in
                 Button {
                     let cleanedPhone = "tel://\(contactsExtractor.cleanPhoneNumber(phone))"
                     guard let url = URL(string: cleanedPhone) else { return }
@@ -88,22 +87,8 @@ struct CarrierDetailsView: View {
                         .font(.system(size: 12, weight: .regular))
                         .foregroundStyle(.ypBlue)
                 }
-                .padding(.bottom, carrierPhones.last == phone ? 0 : 8)
+                .padding(.bottom, vm.carrierPhones.last == phone ? 0 : 8)
             }
-        }
-    }
-    
-    private func extractContacts() {
-        let phoneFromPhoneField = carrier.phone ?? ""
-        let emailFromEmailField = carrier.email ?? ""
-        
-        if emailFromEmailField.isEmpty || phoneFromPhoneField.isEmpty {
-            let (phones, emails) = contactsExtractor.extractContacts(from: carrier.contacts ?? "")
-            carrierPhones = phoneFromPhoneField.isEmpty ? phones : [phoneFromPhoneField]
-            carrierEmails = emailFromEmailField.isEmpty ? emails : [emailFromEmailField]
-        } else {
-            carrierPhones = [phoneFromPhoneField]
-            carrierEmails = [emailFromEmailField]
         }
     }
 }
